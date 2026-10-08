@@ -4,7 +4,7 @@
 export NOMOUNT_SETUP_VER="2.1.0"
 export NOMOUNT_SETUP_ZIP="https://github.com/maxsteeel/nomount/archive/refs/tags/v$NOMOUNT_SETUP_VER.zip"
 export NOMOUNT_SETUP_URI="https://raw.githubusercontent.com/maxsteeel/nomount/refs/heads/master/kernel/setup.sh"
-export NOMOUNT_SETUP_BRANCH_STABLE="c7f63e3feb4125d591b6969a33aac04feb40f8ba"
+export NOMOUNT_SETUP_BRANCH_STABLE="v2.1.0"
 export NOMOUNT_SETUP_BRANCH_BLEEDING_EDGE="dev"
 
 # Download nomount
