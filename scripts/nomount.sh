@@ -6,6 +6,10 @@ source scripts/functions/nomount.sh
 
 case "$NOMOUNT_SELECTOR" in
     nomount)
+        # Setup nomount
+        nomount_setup_stable
+        ;;
+    nomount-old)
         # Download nomount
         nomount_download
 

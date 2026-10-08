@@ -3,7 +3,8 @@
 # Export nomount variables
 export NOMOUNT_SETUP_VER="2.1.0"
 export NOMOUNT_SETUP_ZIP="https://github.com/maxsteeel/nomount/archive/refs/tags/v$NOMOUNT_SETUP_VER.zip"
-export NOMOUNT_SETUP_URI_BLEEDING_EDGE="https://raw.githubusercontent.com/maxsteeel/nomount/refs/heads/master/kernel/setup.sh"
+export NOMOUNT_SETUP_URI="https://raw.githubusercontent.com/maxsteeel/nomount/refs/heads/master/kernel/setup.sh"
+export NOMOUNT_SETUP_BRANCH_STABLE="c7f63e3feb4125d591b6969a33aac04feb40f8ba"
 export NOMOUNT_SETUP_BRANCH_BLEEDING_EDGE="dev"
 
 # Download nomount
@@ -41,6 +42,13 @@ nomount_setup() {
 # Setup nomount bleeding edge
 nomount_setup_bleeding_edge() {
     echo "-- NoMount: Bleeding Edge! Running setup script..."
-    curl -LSs --fail --retry 3 "$NOMOUNT_SETUP_URI_BLEEDING_EDGE" | bash -s "$NOMOUNT_SETUP_BRANCH_BLEEDING_EDGE" &> /dev/null || { echo "-- Fatal: NoMount setup script failed to download/run!"; exit 1; }
+    curl -LSs --fail --retry 3 "$NOMOUNT_SETUP_URI" | bash -s "$NOMOUNT_SETUP_BRANCH_BLEEDING_EDGE" &> /dev/null || { echo "-- Fatal: NoMount setup script failed to download/run!"; exit 1; }
+    echo "CONFIG_NOMOUNT=y" >> "$FINAL_DEFCONFIG"
+}
+
+# Setup nomount stable
+nomount_setup_stable() {
+    echo "-- NoMount: Running setup script..."
+    curl -LSs --fail --retry 3 "$NOMOUNT_SETUP_URI" | bash -s "$NOMOUNT_SETUP_BRANCH_STABLE" &> /dev/null || { echo "-- Fatal: NoMount setup script failed to download/run!"; exit 1; }
     echo "CONFIG_NOMOUNT=y" >> "$FINAL_DEFCONFIG"
 }
