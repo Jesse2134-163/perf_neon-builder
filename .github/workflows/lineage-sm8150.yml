@@ -127,19 +127,11 @@ jobs:
       - name: Apply device related patches
         id: apply_patches
         run: |
-            echo "-- Exporting device patches..."
-            export DTC_PATCH1="https://github.com/LineageOS/android_kernel_xiaomi_sm6150/commit/e207247aa4553fff7190dde5dabb50aec400b513.patch"
-            export DTC_PATCH2="https://github.com/LineageOS/android_kernel_xiaomi_sm6150/commit/ae58bbd8f7af4c3c290e63ddcd4112559c5fc240.patch"
-
             echo "-- Importing patch helper script..."
             source scripts/patch-helper.sh
 
             echo "-- Applying device specific patches..."
             cd "$KERNEL_DIR"
-            
-            echo "-- Applying DTC patches..."
-            apply_patches "$DTC_PATCH1"
-            apply_patches "$DTC_PATCH2"
 
             echo "-- Disallowing kernel to fetch all of the kernel subgit modules..."
             sed -i 's/git_all_proj=$(find . -name .git -type d | sort)/git_all_proj=""/g' scripts/setlocalversion
