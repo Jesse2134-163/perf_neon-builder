@@ -43,6 +43,7 @@ All kernels are exclusively compiled with **Neutron Clang**.
 | LineageOS (SM6125) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
 | Mi-Thorium (MSM8937) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
 | Mi-Thorium (SDM439) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
+| Mi-Titanium (MSM8953) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
    
 **File Namings**   
 `neon-<OS/KernelName>-<DeviceName>-<Platform>-<BuildDate>.zip`   
@@ -63,12 +64,14 @@ All kernels are exclusively compiled with **Neutron Clang**.
 | LineageOS (SM6125) | Redmi Note 8/8T (ginkgo/willow), Xiaomi Mi A3 (laurel_sprout) | Android 13 ~ Android 17 |
 | Mi-Thorium (MSM8937) | Redmi 3S (land), Redmi 4 (prada), Redmi 4X (santoni), Redmi Note 5A Prime/Y1 Prime (ugg), Redmi 4A (rolex), Redmi 5A (riva), Redmi Note 5A Lite/Y1 Lite (ugglite) | Android 11 ~ Android 17 |
 | Mi-Thorium (SDM439) | Redmi 7A (pine), Redmi 8 (olive), Redmi 8A (olivelite), Redmi 8A Dual (olivewood) | Android 11 ~ Android 17 |
+| Mi-Titanium (MSM8953) | Redmi S2/Y2 (ysl), Redmi Note 4/4X Snapdragon (mido), Redmi 5 (rosy), Redmi 5 Plus (vince), Redmi 4 Prime/Pro (markw) | Android 11 ~ Android 17 |
 
 **Notes**   
 - We recommend installing LineageOS, CrDroid and PixelOS kernels on their respective OS.   
 - AwakenOS is upstreamed PixelOS kernels. This usually have newer commits before it got merged into the official PixelOS kernel sources.   
 - LineageOS (SM6125) kernel might run on PixelOS for the respective device.
 - Mi-Thorium kernels doesn't have any OS constraints.   
+- Akari & Mi8953 build for Mi-Titanium kernels contains 2 different way of handling USB, Media and Camera stack. If Mi8953 build feels broken to you pick the Akari build instead.
 - Don't forget to flash appender after flashing the kernel if you're using bootloader bypass exploit on MSM8937 devices.
 - Your device aren't yet supported? Go to the telegram channel to request your device for support.   
 
