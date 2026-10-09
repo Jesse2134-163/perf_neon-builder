@@ -141,6 +141,9 @@ jobs:
             apply_patches "$DTC_PATCH1"
             apply_patches "$DTC_PATCH2"
 
+            echo "-- Disallowing kernel to fetch all of the kernel subgit modules..."
+            sed -i 's/git_all_proj=$(find . -name .git -type d | sort)/git_all_proj=""/g' scripts/setlocalversion
+
             echo "-- Enabling EROFS support..."
             echo "CONFIG_EROFS_FS=y" >> $FINAL_DEFCONFIG
             echo "CONFIG_EROFS_FS_XATTR=y" >> $FINAL_DEFCONFIG
