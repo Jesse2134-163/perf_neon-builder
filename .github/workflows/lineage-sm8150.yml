@@ -128,7 +128,6 @@ jobs:
         id: apply_patches
         run: |
             echo "-- Exporting device patches..."
-            export LTO_PATCH="https://github.com/TheSillyOk/kernel_ls_patches/raw/refs/heads/master/fix_lto.patch"
             export DTC_PATCH1="https://github.com/LineageOS/android_kernel_xiaomi_sm6150/commit/e207247aa4553fff7190dde5dabb50aec400b513.patch"
             export DTC_PATCH2="https://github.com/LineageOS/android_kernel_xiaomi_sm6150/commit/ae58bbd8f7af4c3c290e63ddcd4112559c5fc240.patch"
             export DTBO_PATCH1="https://github.com/xiaomi-sm6150/android_kernel_xiaomi_sm6150/commit/e517bc363a19951ead919025a560f843c2c03ad3.patch"
@@ -143,9 +142,6 @@ jobs:
 
             echo "-- Applying device specific patches..."
             cd "$KERNEL_DIR"
-
-            echo "-- Applying LTO patch..."
-            apply_patches "$LTO_PATCH"
             
             echo "-- Applying DTC patches..."
             apply_patches "$DTC_PATCH1"
