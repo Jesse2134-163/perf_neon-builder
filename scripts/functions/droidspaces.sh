@@ -23,10 +23,7 @@ droidspaces_patches() {
 # Ducttape for droidspaces
 droidspaces_quirks() {
     if [[ "$KERNEL_VERSION" == "4.14" ]]; then
-        # echo "-- Droidspaces: Kernel is 4.14, changing id..."
-        # sed -i 's/css->cgroup->id/css->cgroup->kn->id/g' include/net/netprio_cgroup.h
-        # sed -i 's/css->cgroup->id/css->cgroup->kn->id/g' net/core/netprio_cgroup.c
-        echo "-- Droidspaces: skip changing id for a moment."
+        echo "-- Droidspaces: No quirks for 4.14 kernels yet."
     fi
 }
 
