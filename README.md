@@ -53,6 +53,9 @@ All kernels are exclusively compiled with **Neutron Clang**.
 - **Platform:** Chipset or platform identifier.
 - **BuildDate:** When the kernel was compiled.
 
+**Notes**
+- During the usage of Droidspaces with systemd-based distros, mask the `NetworkManager` and `wpa_supplicant` systemd services to avoid overriding whos owning the wifi device, a.k.a NetworkManager will take control of the wifi device and android will not be able to connect to wifi until you masked the systemd services. 
+
 # Compatibility
 **Supported device list**   
 | Kernel Name | Supported Devices | Supported Android version |
