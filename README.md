@@ -65,7 +65,7 @@ This kernel follows weekly builds of LineageOS, you will get a new kernel build 
 | Kernel Name | Supported Devices | Supported Android version |
 | :--- | :---: | :---: |
 | LineageOS (SM6150) | Redmi Note 10 Pro/Pro Max (sweet), Redmi Note 7 Pro (violet), Xiaomi Mi Note 10 Lite (toco) | Android 13 ~ Android 17 |
-| CrDroid (SM6150) | Redmi Note 10 Pro/Pro Max (sweet), Redmi K20/Mi 9T (davinci) | Android 13 ~ Android 17 |
+| CrDroid (SM6150) | Redmi Note 10 Pro/Pro Max (sweet) | Android 13 ~ Android 17 |
 | PixelOS (SM6150) | Redmi Note 10 Pro/Pro Max (sweet), Xiaomi Mi Note 10 Lite (toco) | Android 13 ~ Android 17 |
 | AwakenOS (SM6150) | Redmi Note 10 Pro/Pro Max (sweet), Xiaomi Mi Note 10 Lite (toco) | Android 13 ~ Android 17 |
 | LineageOS (SM6125) | Redmi Note 8/8T (ginkgo/willow), Xiaomi Mi A3 (laurel_sprout) | Android 13 ~ Android 17 |
@@ -76,6 +76,7 @@ This kernel follows weekly builds of LineageOS, you will get a new kernel build 
 | MIUI (SM6150) | Redmi Note 10 Pro/Pro Max (sweet) | Android 11 ~ Android 17 |
 
 **Notes**   
+- Looking for davinci? I moved davinci support from here to [Nebula Kernel Builder](https://github.com/Drsexo/davinci_kernel) instead.
 - We recommend installing LineageOS, CrDroid and PixelOS kernels on their respective OS.   
 - AwakenOS is upstreamed PixelOS kernels. This usually have newer commits before it got merged into the official PixelOS kernel sources.   
 - LineageOS (SM6125) kernel might run on PixelOS for the respective device.
