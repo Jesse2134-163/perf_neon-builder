@@ -18,7 +18,6 @@ jobs:
       max-parallel: 4
       matrix:
         devices: [sweet]
-        selinux: [enforcing, permissive]
     
     steps:
       - uses: actions/checkout@v7
@@ -39,8 +38,8 @@ jobs:
             git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
             echo "-- Exporting kernel settings..."
-            export KERNEL_REPO="https://github.com/riarumoda/crdroid_kernel_xiaomi_sm6150.git"
-            export KERNEL_BRANCH="17.0"
+            export KERNEL_REPO="https://github.com/riarumoda/android_kernel_xiaomi_sm6150.git"
+            export KERNEL_BRANCH="lineage-24.0"
             export KERNEL_DIR="android_kernel_xiaomi_sm6150"
             
             echo "-- Exporting variables into GITHUB_ENV..."
@@ -129,19 +128,9 @@ jobs:
             echo "-- Applying device specific patches..."
             cd "$KERNEL_DIR"
 
-            if [[ "${{ matrix.selinux }}" == "permissive" ]]; then
-              echo "-- Making SELinux Permissive..."
-              sed -i '/static inline bool enforcing_enabled/,/}/ s/return.*/return false;/' security/selinux/include/security.h
-            elif [[ "${{ matrix.selinux }}" == "enforcing" ]]; then
-              echo "-- SELinux will be kept enforcing."
-            fi
-
-            echo "-- Disabling IKHeaders..."
-            sed -i 's/CONFIG_IKHEADERS=y/# CONFIG_IKHEADERS is not set/g' $FINAL_DEFCONFIG
-
-            echo "-- Tuning compiler flags..."
-            sed -i 's/-Wno-format-security/-Wno-format-security -Wno-declaration-after-statement -Wno-implicit-int -Wno-enum-conversion -Wno-default-const-init-var-unsafe -Wno-default-const-init-field-unsafe -Wno-misleading-indentation -Wno-unsequenced -Wno-sizeof-pointer-memaccess -Wno-implicit-function-declaration -Wno-implicit-enum-enum-cast/g' Makefile
-            sed -i '/export KBUILD_CFLAGS/i KBUILD_CFLAGS += -mllvm -polly -mllvm -enable-gvn-hoist -Wno-unused-command-line-argument' Makefile
+            echo "-- Getting rid of the dirty flag..."
+            sed -i "s/printf '%s' -dirty/:/g" scripts/setlocalversion
+            
             cd ..
 
       - name: Apply goodies
@@ -153,7 +142,7 @@ jobs:
             export KERNELSU_SELECTOR="baka-susfs"
             export BBG_SELECTOR="bbg"
             export NOMOUNT_SELECTOR="nomount"
-            export DROIDSPACES_SELECTOR="none"
+            export DROIDSPACES_SELECTOR="droidspaces"
 
             echo "-- Running goodies script..."
             cp goodies.sh "$KERNEL_DIR/"
@@ -222,9 +211,6 @@ jobs:
             if [[ "$DEVICE_LIST" == "sweet" ]]; then
                 sed -i 's/device.name1=sweet/device.name1=sweet/g' AnyKernel3/anykernel.sh
                 sed -i 's/device.name2=sweetin/device.name2=sweetin/g' AnyKernel3/anykernel.sh
-            elif [[ "$DEVICE_LIST" == "davinci" ]]; then
-                sed -i 's/device.name1=sweet/device.name1=davinci/g' AnyKernel3/anykernel.sh
-                sed -i 's/device.name2=sweetin/device.name2=davinciin/g' AnyKernel3/anykernel.sh
             fi
 
             echo "-- Updating kernel build type..."
@@ -233,7 +219,7 @@ jobs:
       - name: Pack kernel with AnyKernel3
         run: |
             echo "-- Exporting zip settings..."
-            export ZIP_PREFIX="neon-miui-${{ matrix.selinux }}-${{ matrix.devices }}-sm6150"
+            export ZIP_PREFIX="neon-miui-${{ matrix.devices }}-sm6150"
             export ZIPNAME="${ZIP_PREFIX}-${{ inputs.build_date }}.zip"
 
             cd AnyKernel3
@@ -243,7 +229,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: miui-${{ matrix.selinux }}-${{ matrix.devices }}
+          name: miui-${{ matrix.devices }}
           path: |
             *.zip
             release_info.txt
