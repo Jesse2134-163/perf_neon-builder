@@ -43,7 +43,7 @@ This kernel follows weekly builds of LineageOS, you will get a new kernel build 
 | Mi-Thorium (SDM439) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
 | Mi-Titanium (MSM8953) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
 | SouthWest-NG (SDM660) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
-| MIUI (SM6150) | ✅ w/ SUSFS | ✅ | ✅ | ❌ |
+| MIUI (SM6150) | ✅ w/ SUSFS | ✅ | ✅ | ✅ |
    
 **File Namings**   
 `neon-<OS/KernelName>-<DeviceName>-<Platform>-<BuildDate>.zip`   
@@ -56,9 +56,6 @@ This kernel follows weekly builds of LineageOS, you will get a new kernel build 
 **Notes**
 - During the usage of Droidspaces with systemd-based distros, mask the `NetworkManager` and `wpa_supplicant` systemd services to avoid overriding whos owning the wifi device, a.k.a NetworkManager will take control of the wifi device and android will not be able to connect to wifi until you masked the systemd services.   
 - CrDroid (SM6150) & LineageOS (SM6125) Droidspaces support have been marked "Yellow" because of the new Resources Limiter features of Droidspaces 7.0.0, and this feature is incompatible with said kernels because said kernels have Qualcomm WALT feature enabled by default, and CFS_BANDWIDTH is NOT compatible with Qualcomm WALT enabled.   
-
-**Warning! ⚠️**
-- Any kind of CLI activities, for example Termux, Droidspaces or even upgrading your kernel via BakaSU Manager, will crash & break if you enable SELinux Hide on KernelSU. Please disable them first before continuing. We recommend installing updates via recovery only for now.   
 
 # Compatibility
 **Supported device list**   
@@ -113,7 +110,7 @@ You can install different KernelSU Manager with BakaSU kernel drivers. This is c
    
 # Credits
 **Patches & buildscript**
-- [TBYOOL](https://github.com/tbyool) for the buildscripts, kernel sources & kernel patches.   
+- [TBYOOL](https://github.com/tbyool) for the buildscripts, kernel sources, kernel commits & kernel patches.   
 - [xiaomi-sm6150](https://github.com/xiaomi-sm6150) for the DTB patches.   
 - [JackA1ltMan](https://github.com/JackA1ltman) for BakaSU hook scripts & SUSFS patches.   
 - [TheSillyOk](https://github.com/TheSillyOk) for LTO fixup for 4.14 devices.   
